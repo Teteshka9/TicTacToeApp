@@ -68,5 +68,20 @@ public class GameServiceUsage implements GameService {
         }
         return null;
     }
+    @Override
+    public boolean isGameOver(GameSession gameSession) {
+        int[][] field = gameSession.getField().getField();
+        return checkWin(field, 1) || checkWin(field, 2) || isBoardFull(field);
+    }
+
+    public boolean isBoardFull(int[][] field) {
+        for (int i = 0; i < field.length; i++) {
+            for (int j = 0; j < field[i].length; j++) {
+                if (field[i][j] == 0) return false;
+            }
+        }
+        return true;
+    }
+
 }
 
