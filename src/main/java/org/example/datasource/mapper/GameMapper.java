@@ -6,7 +6,7 @@ import org.example.domain.model.GameSession;
 import org.example.datasource.model.GameSessionEntity;
 
 public class GameMapper {
-    public static GameFieldEntity toEntity(GameSession domainSession) {
+    public static GameSessionEntity toEntity(GameSession domainSession) {
          GameSessionEntity entity = new GameSessionEntity(domainSession.getId(),
                  domainSession.getField().getSize());
 
@@ -21,7 +21,7 @@ public class GameMapper {
         for (int i = 0; i < domainArray.length; i++) {
             System.arraycopy(domainArray[i], 0, entityArray[i], 0, domainArray[i].length);
         }
-        return entity.getField();
+        return entity;
     }
 
     public static GameSession toDomain(GameSessionEntity entity) {
