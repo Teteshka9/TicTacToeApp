@@ -1,6 +1,6 @@
 package org.example.web.mapper;
 
-
+import org.example.domain.model.GameSession;
 import org.example.web.model.GameStateResponse;
 
 

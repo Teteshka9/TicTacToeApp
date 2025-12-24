@@ -27,7 +27,7 @@ public class GameServiceUsage implements GameService {
             return winningMove;
         }
 
-        int[] blockingMove = findWinnigMove(field, 1);
+        int[] blockingMove = findWinningMove(field, 1);
         if (blockingMove != null) {
             System.out.println("Opponent blocks: " + Arrays.toString(blockingMove));
             return blockingMove;
@@ -61,7 +61,7 @@ public class GameServiceUsage implements GameService {
                     field[i][j] = 0;
 
                     if (isWin) {
-                        return new int[i][j];
+                        return new int[]{i, j};
                     }
                 }
             }
@@ -81,6 +81,42 @@ public class GameServiceUsage implements GameService {
             }
         }
         return true;
+    }
+
+    public boolean checkWin(int[][] field, int player) {
+        int size = field.length;
+
+        for (int i = 0; i < size; i++) {
+            boolean win = true;
+            for (int j = 0; j < size; j++) {
+                if (field[i][j] != player) {
+                    win = false;
+                    break;
+                }
+            }
+            if (win) return true;
+        }
+
+        boolean diag1Win = true;
+        for (int i = 0; i < size; i++) {
+            if (field[i][i] != player) {
+                diag1Win = false;
+                break;
+            }
+        }
+        if (diag1Win) return true;
+
+        boolean diag2Win = true;
+        for (int i = 0; i < size; i++) {
+            if(field[i][size-i-1] != player) {
+                diag2Win = false;
+                break;
+            }
+        }
+        if (diag2Win) return true;
+
+        return false;
+
     }
 
 }
